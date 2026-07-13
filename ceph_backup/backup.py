@@ -499,6 +499,7 @@ def backup_rbd_fs(api, vol, now, max_backup_duration):
             ),
             spec=k8s_client.V1JobSpec(
                 active_deadline_seconds=max_backup_duration,
+                backoff_limit=1,
                 template=k8s_client.V1PodTemplateSpec(
                     metadata=k8s_client.V1ObjectMeta(
                         labels=labels,
@@ -681,6 +682,7 @@ def backup_rbd_block(api, vol, now, max_backup_duration):
             ),
             spec=k8s_client.V1JobSpec(
                 active_deadline_seconds=max_backup_duration,
+                backoff_limit=1,
                 template=k8s_client.V1PodTemplateSpec(
                     metadata=k8s_client.V1ObjectMeta(
                         labels=labels,
